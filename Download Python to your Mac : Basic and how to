@@ -1,0 +1,72 @@
+⭐️1. Python Distributors
+
+■ Introduction
+
+The first thing to know is that Python is distributed by various entities. 
+This means there are several ways to install it, and your choice can affect how the system behaves or how you interact with Python.
+
+
+■  Distributors
+
+▷ CPython Release Team (python.org)
+This is the most common official source. You can view all Python releases and download the installer for your Mac.
+
+How: Download the .pkg file from the website and run the installer.
+
+Where: /usr/local/bin/python3 (Default path)
+
+Behavior: It installs a "framework" version of Python that is independent of the system.
+
+
+▷ Homebrew (brew.sh)
+Homebrew is a popular package manager that most macOS developers install. You can install Python by running the following command in your terminal:
+
+brew install python
+
+Where: /opt/homebrew/bin/python3 (on Apple Silicon Macs)
+
+Behavior: When installed via Homebrew, the system will typically prioritize this version over others in your command line environment.
+
+▷ Apple (System Python)
+This version of Python comes pre-installed with macOS. We generally do not use this for development because Apple uses it for internal system processes.
+
+Where: /usr/bin/python3
+
+
+⭐️2. Locating Python Files
+
+When you access your root directory (/), you may notice that folders like /usr/ are missing. This is because these system directories are hidden by default.
+
+
+■ How to see hidden files:
+In Finder: Press Cmd + Shift + . (period) to toggle hidden files on or off.
+
+Go to Folder: Press Cmd + Shift + G in Finder and type the path (e.g., /usr/local/bin) to jump directly there.
+
+In Browser: You can also browse your local file system by typing file:/// in your web browser's address bar.
+
+
+⭐️3. Version Priority: Which Python is running?
+What happens if you install Python using both Homebrew and the CPython installer?
+
+By default, when you run the python3 command, macOS determines which one to use based on your PATH environment variable.
+
+
+■ To check which Python is currently active, run: which python3
+
+To use a specific version (e.g., the CPython version), you can call it by its full path: /usr/local/bin/python3
+
+Understanding .zshrc
+The .zshrc file (Z-shell Run Command) is a configuration script for the Zsh shell (the default terminal on macOS). Every time you open a new Terminal window, the system reads this file to set up your environment.
+
+Usually, Homebrew adds a line like this to your .zshrc:
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+This ensures that the terminal looks into the Homebrew directory first. Without this configuration, the terminal might default to the older Apple-provided Python or fail to find your new installation. You can view the contents of this file by running:
+cat ~/.zshrc
+
+
+
+References:
+1. Python document . 5.Using Python on MacOS. https://docs.python.org/3/using/mac.html
+2. How to change the alias of python https://zenn.dev/kubomi/articles/214a2ced7f2562 
